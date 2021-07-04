@@ -1,7 +1,7 @@
-package designPatterns.creationalPatterns.builder.door;
+package mazeGame.door;
 
-import designPatterns.creationalPatterns.builder.room.Room;
-import designPatterns.creationalPatterns.builder.room.SimpleRoom;
+import mazeGame.room.Room;
+import mazeGame.room.SimpleRoom;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,6 +1,6 @@
-package designPatterns.creationalPatterns.builder.door;
+package mazeGame.door;
 
-import designPatterns.creationalPatterns.builder.room.Room;
+import mazeGame.room.Room;
 
 public class SimpleDoor extends Door {
     public SimpleDoor(Room firstRoom, Room secondRoom) {

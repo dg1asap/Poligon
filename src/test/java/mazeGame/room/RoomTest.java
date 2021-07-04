@@ -1,8 +1,8 @@
-package designPatterns.creationalPatterns.builder.room;
+package mazeGame.room;
 
-import designPatterns.creationalPatterns.builder.utilities.Side;
-import designPatterns.creationalPatterns.builder.wall.SimpleWall;
-import designPatterns.creationalPatterns.builder.wall.Wall;
+import mazeGame.utilities.Side;
+import mazeGame.wall.SimpleWall;
+import mazeGame.wall.Wall;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

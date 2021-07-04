@@ -1,7 +1,7 @@
-package designPatterns.creationalPatterns.builder.room;
+package mazeGame.room;
 
-import designPatterns.creationalPatterns.builder.utilities.Side;
-import designPatterns.creationalPatterns.builder.wall.Wall;
+import mazeGame.utilities.Side;
+import mazeGame.wall.Wall;
 
 import java.util.HashMap;
 import java.util.Map;

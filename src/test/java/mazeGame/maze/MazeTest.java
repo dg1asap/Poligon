@@ -1,6 +1,7 @@
-package designPatterns.creationalPatterns.builder.maze;
+package mazeGame.maze;
 
-import designPatterns.creationalPatterns.builder.room.SimpleRoom;
+import mazeGame.room.SimpleRoom;
+import mazeGame.maze.Maze;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

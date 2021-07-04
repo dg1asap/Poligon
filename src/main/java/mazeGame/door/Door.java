@@ -1,6 +1,6 @@
-package designPatterns.creationalPatterns.builder.door;
+package mazeGame.door;
 
-import designPatterns.creationalPatterns.builder.room.Room;
+import mazeGame.room.Room;
 
 public abstract class Door {
     protected Room firstRoom;

@@ -1,10 +1,10 @@
-package designPatterns.creationalPatterns.builder.wall;
+package mazeGame.wall;
 
-import designPatterns.creationalPatterns.builder.door.Door;
-import designPatterns.creationalPatterns.builder.door.SimpleDoor;
-import designPatterns.creationalPatterns.builder.room.Room;
-import designPatterns.creationalPatterns.builder.room.SimpleRoom;
-import designPatterns.creationalPatterns.builder.utilities.Side;
+import mazeGame.door.Door;
+import mazeGame.door.SimpleDoor;
+import mazeGame.room.Room;
+import mazeGame.room.SimpleRoom;
+import mazeGame.utilities.Side;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
-package designPatterns.creationalPatterns.builder.maze;
+package mazeGame.maze;
 
-import designPatterns.creationalPatterns.builder.room.Room;
+import mazeGame.room.Room;
 
 import java.util.ArrayList;
 
