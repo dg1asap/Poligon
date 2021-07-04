@@ -5,15 +5,20 @@ import org.junit.jupiter.api.Test;
 
 public class MazeTest {
     @BeforeAll
-    static void createMaze() {
+    static void createWithTwoSimpleMaze() {
         Maze maze = new Maze();
+        addTwoSimpleRoomsToMaze(maze);
     }
 
-    @Test
-    void addSimpleRoomsToMaze() {
+    static void addTwoSimpleRoomsToMaze(Maze maze) {
         SimpleRoom simpleRoom1 = new SimpleRoom();
         SimpleRoom simpleRoom2 = new SimpleRoom();
         maze.addRoom(simpleRoom1);
         maze.addRoom(simpleRoom2);
+    }
+
+    @Test
+    void test() {
+
     }
 }
