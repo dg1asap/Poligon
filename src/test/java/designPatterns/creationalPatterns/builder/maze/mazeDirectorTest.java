@@ -1,4 +1,4 @@
-package designPatterns.creationalPatterns.builder;
+package designPatterns.creationalPatterns.builder.maze;
 
 import org.junit.jupiter.api.Test;
 

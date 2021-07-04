@@ -1,5 +1,6 @@
-package designPatterns.creationalPatterns.builder;
+package designPatterns.creationalPatterns.builder.maze;
 
+import designPatterns.creationalPatterns.builder.room.SimpleRoom;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
