@@ -1,6 +1,5 @@
 package designPatterns.creationalPatterns.builder.room;
 
-import com.sun.jdi.event.StepEvent;
 import designPatterns.creationalPatterns.builder.utilities.Side;
 import designPatterns.creationalPatterns.builder.wall.SimpleWall;
 import designPatterns.creationalPatterns.builder.wall.Wall;
@@ -25,15 +24,22 @@ public class RoomTest {
     @MethodSource("numberOfWallAndSide")
     void addNWallPerOneSide(int numberOfWall, Side side) {
         Room room = new SimpleRoom();
-        for (int i = 0; i < numberOfWall; i++) {
-            Wall wall = new SimpleWall();
-            room.setSide(side, wall);
-        }
-
+        addNWallPerOneSideToRoom(numberOfWall, side, room);
         assertNWallInRoom(1, room);
     }
 
-    private void createFourWallInRoom(Room room) {
+    @Test
+    void addWallToMoreThanOneSide() {
+        Room room = new SimpleRoom();
+        addNWallPerOneSideToRoom(3, Side.NORTH, room);
+        addNWallPerOneSideToRoom(7, Side.EAST, room);
+        addNWallPerOneSideToRoom(4, Side.NORTH, room);
+        addNWallPerOneSideToRoom(5, Side.NORTH, room);
+        addNWallPerOneSideToRoom(1, Side.WEST, room);
+        assertNWallInRoom(3, room);
+    }
+
+    public void createFourWallInRoom(Room room) {
         Wall NorthWall = new SimpleWall();
         Wall EastWall = new SimpleWall();
         Wall WestWall = new SimpleWall();
@@ -45,6 +51,13 @@ public class RoomTest {
         room.setSide(Side.SOUTH, SouthWall);
     }
 
+    private void addNWallPerOneSideToRoom(int numberOfWall, Side side, Room room) {
+        for (int i = 0; i < numberOfWall; i++) {
+            Wall wall = new SimpleWall();
+            room.setSide(side, wall);
+        }
+    }
+
     private void assertNWallInRoom(int numberOfWall, Room room) {
         int numberOfWalls = room.sides.size();
         assertEquals(numberOfWalls, numberOfWall);
@@ -52,7 +65,7 @@ public class RoomTest {
 
     static Stream <Arguments> numberOfWallAndSide() {
         return Stream.of(
-                Arguments.arguments(1, Side.EAST),
+                Arguments.arguments(1, Side.SOUTH),
                 Arguments.arguments(2, Side.EAST),
                 Arguments.arguments(3, Side.WEST),
                 Arguments.arguments(4, Side.SOUTH),
