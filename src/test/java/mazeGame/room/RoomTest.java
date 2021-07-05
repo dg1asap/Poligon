@@ -14,22 +14,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RoomTest {
     @Test
-    void addOneWallPerSide() {
+    void testAddOneWallPerSide() {
         Room room = new SimpleRoom();
         createFourWallInRoom(room);
         assertNWallInRoom(4, room);
     }
 
     @ParameterizedTest(name =  "#{index} Add {0} Walls per {1}Side")
-    @MethodSource("numberOfWallAndSide")
-    void addNWallPerOneSide(int numberOfWall, Side side) {
+    @MethodSource("numberOfWallsAndSide")
+    void testAddNWallPerOneSide(int numberOfWall, Side side) {
         Room room = new SimpleRoom();
         addNWallPerOneSideToRoom(numberOfWall, side, room);
         assertNWallInRoom(1, room);
     }
 
     @Test
-    void addWallToMoreThanOneSide() {
+    void testAddWallToMoreThanOneSide() {
         Room room = new SimpleRoom();
         addNWallPerOneSideToRoom(3, Side.NORTH, room);
         addNWallPerOneSideToRoom(7, Side.EAST, room);
@@ -63,7 +63,7 @@ public class RoomTest {
         assertEquals(numberOfWalls, numberOfWall);
     }
 
-    static Stream <Arguments> numberOfWallAndSide() {
+    static Stream <Arguments> numberOfWallsAndSide() {
         return Stream.of(
                 Arguments.arguments(1, Side.SOUTH),
                 Arguments.arguments(2, Side.EAST),
