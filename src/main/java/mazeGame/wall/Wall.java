@@ -8,4 +8,9 @@ public abstract class Wall {
     public void setDoor(Door door) {
         this.door = door;
     }
+
+    public boolean hasDoor() {
+        return door != null;
+    }
+
 }

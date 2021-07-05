@@ -4,7 +4,7 @@ import mazeGame.maze.Maze;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/*
 public class mazeBuilderTest {
     @Test
     void createSimpleStandardMaze() {
@@ -31,3 +31,4 @@ public class mazeBuilderTest {
     }
 
 }
+*/

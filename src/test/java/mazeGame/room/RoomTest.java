@@ -1,8 +1,11 @@
 package mazeGame.room;
 
+import mazeGame.door.Door;
+import mazeGame.door.SimpleDoor;
 import mazeGame.utilities.Side;
 import mazeGame.wall.SimpleWall;
 import mazeGame.wall.Wall;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,9 +16,15 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RoomTest {
+    static Room room;
+
+    @BeforeEach
+    void createRoom() {
+        room = new SimpleRoom();
+    }
+
     @Test
     void testAddOneWallPerSide() {
-        Room room = new SimpleRoom();
         createFourWallInRoom(room);
         assertNWallInRoom(4, room);
     }
@@ -23,14 +32,12 @@ public class RoomTest {
     @ParameterizedTest(name =  "#{index} Add {0} Walls per {1}Side")
     @MethodSource("numberOfWallsAndSide")
     void testAddNWallPerOneSide(int numberOfWall, Side side) {
-        Room room = new SimpleRoom();
         addNWallPerOneSideToRoom(numberOfWall, side, room);
         assertNWallInRoom(1, room);
     }
 
     @Test
     void testAddWallToMoreThanOneSide() {
-        Room room = new SimpleRoom();
         addNWallPerOneSideToRoom(3, Side.NORTH, room);
         addNWallPerOneSideToRoom(7, Side.EAST, room);
         addNWallPerOneSideToRoom(4, Side.NORTH, room);
@@ -39,7 +46,27 @@ public class RoomTest {
         assertNWallInRoom(3, room);
     }
 
-    public void createFourWallInRoom(Room room) {
+    @ParameterizedTest(name = "{index} has wall from {0} side")
+    @MethodSource("side")
+    void testHasWallFromSide(Side side) {
+        room.setSide(side, new SimpleWall());
+        assertTrue(room.hasWallFromSide(side));
+    }
+
+    @ParameterizedTest(name = "{index} has door from {0} side")
+    @MethodSource("side")
+    void testHasDoorFromSide(Side side) {
+        Room firstRoom = new SimpleRoom();
+        Room secondRoom = new SimpleRoom();
+        Door door = new SimpleDoor(firstRoom, secondRoom);
+        Wall wall = new SimpleWall();
+        wall.setDoor(door);
+        room.setSide(side, wall);
+        assertTrue(room.hasDoorFromSide(side));
+    }
+
+
+    private void createFourWallInRoom(Room room) {
         Wall NorthWall = new SimpleWall();
         Wall EastWall = new SimpleWall();
         Wall WestWall = new SimpleWall();
@@ -72,6 +99,15 @@ public class RoomTest {
                 Arguments.arguments(5, Side.EAST),
                 Arguments.arguments(8, Side.NORTH),
                 Arguments.arguments(84, Side.NORTH)
+        );
+    }
+
+    static Stream <Arguments> side() {
+        return Stream.of(
+                Arguments.arguments(Side.NORTH),
+                Arguments.arguments(Side.EAST),
+                Arguments.arguments(Side.WEST),
+                Arguments.arguments(Side.SOUTH)
         );
     }
 

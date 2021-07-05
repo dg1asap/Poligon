@@ -27,7 +27,7 @@ public class MazeTest {
         SimpleRoom simpleRoom1 = new SimpleRoom();
         SimpleRoom simpleRoom2 = new SimpleRoom();
 
-        SimpleDoor simpleDoor = new SimpleDoor();
+        SimpleDoor simpleDoor = new SimpleDoor(simpleRoom1, simpleRoom2);
         SimpleWall commonWall = new SimpleWall();
         commonWall.setDoor(simpleDoor);
         simpleRoom1.setSide(Side.EAST, commonWall);
@@ -49,15 +49,14 @@ public class MazeTest {
     @ParameterizedTest(name = "#{index} {0} walls from site {1}")
     @MethodSource("numberOfWallsAndSide")
     void testNumberOfWallsFromSide(int expectedNumberOfWalls, Side side) {
-        int actualNumberOfWalls = maze.getNumberOfWalls();
+        int actualNumberOfWalls = maze.getNumberOfWallsFromSide(side);
         assertEquals(expectedNumberOfWalls, actualNumberOfWalls);
     }
-
 
     @ParameterizedTest(name = "#{index} {0} doors form site {1}")
     @MethodSource("numberOfDoorsAndSide")
     void testNumberOfDoorFromSide(int expectedNumberOfDoor, Side side) {
-        int actualNumberOfDoors = maze.getNumberOfDoors();
+        int actualNumberOfDoors = maze.getNumberOfDoorsFromSide(side);
         assertEquals(expectedNumberOfDoor, actualNumberOfDoors);
     }
 
