@@ -44,14 +44,18 @@ public class WallTest {
 
     @Test
     void testAddDoorToWall() {
-        Door door = new SimpleDoor(firstRoom, secondRoom);
+        Door door = new SimpleDoor();
+        door.embedInRooms(firstRoom, secondRoom);
+
         commonWall.setDoor(door);
         assertEquals(door, commonWall.door);
     }
 
     @Test
     void testHasDoor() {
-        Door door = new SimpleDoor(firstRoom, secondRoom);
+        Door door = new SimpleDoor();
+        door.embedInRooms(firstRoom, secondRoom);
+
         commonWall.setDoor(door);
         assertTrue(commonWall.hasDoor());
     }

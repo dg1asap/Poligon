@@ -56,15 +56,49 @@ public class RoomTest {
     @ParameterizedTest(name = "{index} has door from {0} side")
     @MethodSource("side")
     void testHasDoorFromSide(Side side) {
-        Room firstRoom = new SimpleRoom();
-        Room secondRoom = new SimpleRoom();
-        Door door = new SimpleDoor(firstRoom, secondRoom);
-        Wall wall = new SimpleWall();
-        wall.setDoor(door);
-        room.setSide(side, wall);
+        createDefectiveStandardSimpleMazeWithDoorFromSide(side);
         assertTrue(room.hasDoorFromSide(side));
     }
 
+    @Test
+    void testGetNumberOfDoors() {
+        createDefectiveStandardSimpleMazeWithDoorFromSide(Side.SOUTH);
+        assertEquals(room.getNumberOfDoors(), 1);
+    }
+
+    @Test
+    void testHasCommonWall() {
+        Room firstRoom = new SimpleRoom();
+        Room secondRoom = new SimpleRoom();
+        createCommonWallAndDoorFor(firstRoom, secondRoom);
+        assertTrue(firstRoom.hasCommonWall(secondRoom));
+        assertFalse(firstRoom.hasCommonWall(room));
+    }
+
+    @Test
+    void testEmbedDoorInCommonWall() {
+        Room firstRoom = new SimpleRoom();
+        Room secondRoom = new SimpleRoom();
+        createCommonWallFor(firstRoom, secondRoom);
+        Door door = new SimpleDoor();
+        door.embedInRooms(firstRoom, secondRoom);
+
+        firstRoom.embedDoorInCommonWall(door, secondRoom);
+
+        assertTrue(firstRoom.hasCommonWall(secondRoom));
+        assertFalse(firstRoom.hasCommonWall(room));
+    }
+
+    private void createDefectiveStandardSimpleMazeWithDoorFromSide(Side side) {
+        Room firstRoom = new SimpleRoom();
+        Room secondRoom = new SimpleRoom();
+        Door door = new SimpleDoor();
+        door.embedInRooms(firstRoom, secondRoom);
+
+        Wall wall = new SimpleWall();
+        wall.setDoor(door);
+        room.setSide(side, wall);
+    }
 
     private void createFourWallInRoom(Room room) {
         Wall NorthWall = new SimpleWall();
@@ -88,6 +122,22 @@ public class RoomTest {
     private void assertNWallInRoom(int numberOfWall, Room room) {
         int numberOfWalls = room.sides.size();
         assertEquals(numberOfWalls, numberOfWall);
+    }
+
+    private void createCommonWallAndDoorFor(Room firstRoom, Room secondRoom) {
+        Door door = new SimpleDoor();
+        door.embedInRooms(firstRoom, secondRoom);
+
+        Wall commonWall = new SimpleWall();
+        commonWall.setDoor(door);
+        firstRoom.setSide(Side.EAST, commonWall);
+        secondRoom.setSide(Side.WEST, commonWall);
+    }
+
+    private void createCommonWallFor(Room firstRoom, Room secondRoom) {
+        Wall commonWall = new SimpleWall();
+        firstRoom.setSide(Side.EAST, commonWall);
+        secondRoom.setSide(Side.WEST, commonWall);
     }
 
     static Stream <Arguments> numberOfWallsAndSide() {
