@@ -5,7 +5,7 @@ import mazeGame.utilities.Side;
 
 public class ComplexMazeDirector implements MazeDirector {
     @Override
-    public void createMaze(StandardMazeBuilder builder) {
+    public void constructMaze(StandardMazeBuilder builder) {
         builder.buildMaze();
 
         builder.buildRoom();

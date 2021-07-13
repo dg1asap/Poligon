@@ -1,21 +1,21 @@
-package designPatterns.creationalPatterns.builder.mazeDirector;
+package designPatterns.creationalPatterns.abstractFactory.mazeCreator;
 
-import designPatterns.creationalPatterns.builder.mazeBuilder.BoomMazeBuilder;
-import designPatterns.creationalPatterns.builder.mazeBuilder.MagicMazeBuilder;
-import designPatterns.creationalPatterns.builder.mazeBuilder.StandardMazeBuilder;
+import designPatterns.creationalPatterns.abstractFactory.mazeFactory.BoomMazeFactory;
+import designPatterns.creationalPatterns.abstractFactory.mazeFactory.MagicMazeFactory;
+import designPatterns.creationalPatterns.abstractFactory.mazeFactory.MazeFactory;
+import designPatterns.creationalPatterns.abstractFactory.mazeFactory.StandardMazeFactory;
 import mazeGame.maze.Maze;
 import mazeGame.utilities.Side;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MazeDirectorTest {
+public class MazeCreatorTest {
     @Test
-    void createSimpleStandardMaze() {
-        StandardMazeBuilder builder = new StandardMazeBuilder();
-        MazeDirector director = new SimpleMazeDirector();
-        director.constructMaze(builder);
-        Maze maze = builder.getMaze();
+    void testCreateStandardSimpleMaze() {
+        SimpleMazeCreator creator = new SimpleMazeCreator();
+        MazeFactory factory = new StandardMazeFactory();
+        Maze maze = creator.createMaze(factory);
         assertEquals(2, maze.getNumberOfRooms());
         assertEquals(1, maze.getNumberOfDoorsRoomWithIndex(0));
         assertEquals(1, maze.getNumberOfDoorsRoomWithIndex(1));
@@ -26,20 +26,18 @@ public class MazeDirectorTest {
     }
 
     @Test
-    void createMagicComplexMaze() {
-        MagicMazeBuilder builder = new MagicMazeBuilder();
-        MazeDirector director = new ComplexMazeDirector();
-        director.constructMaze(builder);
-        Maze maze = builder.getMaze();
+    void testCreateMagicComplexMaze() {
+        ComplexMazeCreator creator = new ComplexMazeCreator();
+        MazeFactory factory = new MagicMazeFactory();
+        Maze maze = creator.createMaze(factory);
         assertComplexMaze(maze);
     }
 
     @Test
-    void createBoomComplexMaze() {
-        BoomMazeBuilder builder = new BoomMazeBuilder();
-        MazeDirector director = new ComplexMazeDirector();
-        director.constructMaze(builder);
-        Maze maze = builder.getMaze();
+    void testCreateBoomComplexMaze() {
+        ComplexMazeCreator creator = new ComplexMazeCreator();
+        MazeFactory factory = new BoomMazeFactory();
+        Maze maze = creator.createMaze(factory);
         assertComplexMaze(maze);
     }
 
