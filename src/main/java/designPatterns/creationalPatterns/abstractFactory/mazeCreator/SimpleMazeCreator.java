@@ -16,9 +16,7 @@ public class SimpleMazeCreator implements MazeCreator{
         setFactory(factory);
         createEmptyMaze();
         createNRooms(2);
-        equipFirstRoom();
-        equipSecondRoom();
-        equipFirstAndSecondRoomWithCommonElements();
+        equipRooms();
         return maze;
     }
 
@@ -37,7 +35,13 @@ public class SimpleMazeCreator implements MazeCreator{
         }
     }
 
-    private void equipFirstRoom() {
+    private void equipRooms() {
+        equipFirstRoomWithItsOwnElements();
+        equipSecondRoomWithItsOwnElements();
+        equipFirstAndSecondRoomWithCommonElements();
+    }
+
+    private void equipFirstRoomWithItsOwnElements() {
         Wall northWallOfFirstRoom = factory.createWall();
         Wall westWallOfFirstRoom = factory.createWall();
         Wall southWallOfFirstRoom = factory.createWall();
@@ -47,7 +51,7 @@ public class SimpleMazeCreator implements MazeCreator{
         maze.setWallInRoomWithIndexFromSide(southWallOfFirstRoom, 0, Side.SOUTH);
     }
 
-    private void equipSecondRoom() {
+    private void equipSecondRoomWithItsOwnElements() {
         Wall northWallOfSecondRoom = factory.createWall();
         Wall eastWallOfSecondRoom = factory.createWall();
         Wall southWallOfSecondRoom = factory.createWall();

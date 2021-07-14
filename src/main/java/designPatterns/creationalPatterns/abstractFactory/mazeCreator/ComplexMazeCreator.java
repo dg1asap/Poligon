@@ -36,14 +36,14 @@ public class ComplexMazeCreator implements MazeCreator {
     }
 
     private void equipRooms() {
-        equipRoomsWithTheirOwnElements();
+        equipRoomsWithItsOwnElements();
         equipRoomsWithCommonElements();
     }
 
-    private void equipRoomsWithTheirOwnElements() {
-        equipFirstRoom();
-        equipSecondRoom();
-        equipThirdRoom();
+    private void equipRoomsWithItsOwnElements() {
+        equipFirstRoomWithItsOwnElements();
+        equipSecondRoomWithItsOwnElements();
+        equipThirdRoomWithItsOwnElements();
     }
 
     private void equipRoomsWithCommonElements() {
@@ -51,8 +51,7 @@ public class ComplexMazeCreator implements MazeCreator {
         equipSecondAndThirdRoomWithCommonElements();
     }
 
-
-    private void equipFirstRoom() {
+    private void equipFirstRoomWithItsOwnElements() {
         Wall northWallOfFirstRoom = factory.createWall();
         Wall westWallOfFirstRoom = factory.createWall();
         Wall southWallOfFirstRoom = factory.createWall();
@@ -62,7 +61,7 @@ public class ComplexMazeCreator implements MazeCreator {
         maze.setWallInRoomWithIndexFromSide(southWallOfFirstRoom, 0, Side.SOUTH);
     }
 
-    private void equipSecondRoom() {
+    private void equipSecondRoomWithItsOwnElements() {
         Wall northWallOfSecondRoom = factory.createWall();
         Wall eastWallOfSecondRoom = factory.createWall();
 
@@ -70,7 +69,7 @@ public class ComplexMazeCreator implements MazeCreator {
         maze.setWallInRoomWithIndexFromSide(eastWallOfSecondRoom, 1, Side.EAST);
     }
 
-    private void equipThirdRoom() {
+    private void equipThirdRoomWithItsOwnElements() {
         Wall eastWallOfThirdRoom = factory.createWall();
         Wall westWallOfThirdRoom = factory.createWall();
         Wall southWallOfThirdRoom = factory.createWall();
