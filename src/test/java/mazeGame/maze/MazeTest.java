@@ -19,9 +19,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MazeTest {
-    private static Maze maze = new Maze();
-    private static Maze secondMaze = new Maze();
-    private static Maze thirdMaze = new Maze();
+    private static final Maze maze = new Maze();
+    private static final Maze secondMaze = new Maze();
+    private static final Maze thirdMaze = new Maze();
 
     @BeforeAll
     static void createWithTwoSimpleMaze() {

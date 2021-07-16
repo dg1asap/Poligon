@@ -60,5 +60,12 @@ public class WallTest {
         assertTrue(commonWall.hasDoor());
     }
 
+    @Test
+    void testCloneWall() throws CloneNotSupportedException {
+        Wall wall = new SimpleWall();
+        Wall clonedWall = (Wall) wall.clone();
+        assertEquals(wall.getClass(), clonedWall.getClass());
+    }
+
 
 }

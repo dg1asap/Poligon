@@ -8,8 +8,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public abstract class Room {
+public abstract class Room implements Cloneable {
     protected Map<Side, Wall> sides = new HashMap<>();
+
+    public Room() {}
+
+    public Room(Room room) {
+        if (!room.sides.isEmpty()) {
+            room.sides.forEach(this::tryAddFromSideCloneOfWall);
+        }
+    }
 
     public void setSide(Side side, Wall wall) {
         sides.put(side, wall);
@@ -51,6 +59,21 @@ public abstract class Room {
         for (Wall comparedWall : oppositeRoom.sides.values()) {
             embedDoorIfIsCommonWall(door, comparedWall);
         }
+    }
+
+    public abstract Object clone() throws CloneNotSupportedException;
+
+    private void tryAddFromSideCloneOfWall(Side side, Wall wall) {
+        try {
+            addFromSideCloneOfWallFormSide(side, wall);
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addFromSideCloneOfWallFormSide(Side side, Wall wall) throws CloneNotSupportedException{
+        Wall clonedWall = (Wall) wall.clone();
+        this.sides.put(side, clonedWall);
     }
 
     private boolean hasWall(Wall comparedWall) {

@@ -89,6 +89,13 @@ public class RoomTest {
         assertFalse(firstRoom.hasCommonWall(room));
     }
 
+    @Test
+    void testCloneRoom() throws CloneNotSupportedException {
+        Room room = new SimpleRoom();
+        Room clonedRoom = (Room) room.clone();
+        assertEquals(room.getClass(), clonedRoom.getClass());
+    }
+
     private void createDefectiveStandardSimpleMazeWithDoorFromSide(Side side) {
         Room firstRoom = new SimpleRoom();
         Room secondRoom = new SimpleRoom();

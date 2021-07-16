@@ -29,4 +29,16 @@ public class DoorTest {
         assertFalse(door.isInRoom(roomWithoutDoors));
     }
 
+    @Test
+    void testCloneDoor() throws CloneNotSupportedException {
+        Door door = new SimpleDoor();
+        Door clonedDoor = (Door) door.clone();
+        assertEquals(door.getClass(), clonedDoor.getClass());
+    }
+
+    @Test
+    void testDoorIsEmbed() {
+        assertTrue(door.isEmbed());
+    }
+
 }
