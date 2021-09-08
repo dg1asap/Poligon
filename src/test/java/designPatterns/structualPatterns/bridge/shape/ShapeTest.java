@@ -1,5 +1,9 @@
 package designPatterns.structualPatterns.bridge.shape;
 
+import designPatterns.structualPatterns.bridge.color.Color;
+import designPatterns.structualPatterns.bridge.color.Green;
+import designPatterns.structualPatterns.bridge.color.Red;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,6 +14,7 @@ public class ShapeTest {
     static Shape redRectangle;
     static Shape greenRectangle;
 
+    @BeforeAll
     static void createShapes() {
         redCircle = getRedCircle();
         greenCircle = getGreenCircle();
@@ -18,22 +23,22 @@ public class ShapeTest {
     }
 
     static Circle getRedCircle() {
-        Color red = new Color();
+        Color red = new Red();
         return new Circle(red);
     }
 
     static Circle getGreenCircle() {
-        Color green = new Color();
+        Color green = new Green();
         return new Circle(green);
     }
 
-    static Rectange getRedRectangle() {
-        Color red = new Color();
+    static Rectangle getRedRectangle() {
+        Color red = new Red();
         return new Rectangle(red);
     }
 
-    static Rectange getGreenRectangle() {
-        Color green = new Color();
+    static Rectangle getGreenRectangle() {
+        Color green = new Green();
         return new Rectangle(green);
     }
 
@@ -47,10 +52,10 @@ public class ShapeTest {
 
     @Test
     void testGetColor() {
-        assertEquals("#FF0000", redCircle.getColor());
-        assertEquals("#FF0000", redRectangle.getColor());
-        assertEquals("#008000", greenCircle.getColor());
-        assertEquals("#008000", greenRectangle.getColor());
+        assertEquals("#FF0000", redCircle.getRGB());
+        assertEquals("#FF0000", redRectangle.getRGB());
+        assertEquals("#008000", greenCircle.getRGB());
+        assertEquals("#008000", greenRectangle.getRGB());
     }
 
 

@@ -22,7 +22,7 @@ public class ColorTest {
 
     @Test
     void testGetGreenRGB() {
-        assertEquals("008000", green.getRGB());
+        assertEquals("#008000", green.getRGB());
     }
 
 
