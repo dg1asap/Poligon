@@ -35,7 +35,7 @@ public class NotifierDecoratorTest {
     }
 
     private static void configureSmsNotifier() {
-        smsDecorator.setTelephonNumber("987654321");
+        smsDecorator.setTelephoneNumber(987654321);
     }
 
     private static void configureDiscordNotifier() {
@@ -44,7 +44,7 @@ public class NotifierDecoratorTest {
 
     @Test
     public void testSendMessage() {
-        notifier.send("Is anyone here?");
+        notifier.sendMessage("Is anyone here?");
 
         assertEquals("lifeIsBeautiful@gmail.com : Is anyone here?", mailNotifier.lastMessage);
         assertEquals("987654321 : Is anyone here?", smsDecorator.lastMessage);

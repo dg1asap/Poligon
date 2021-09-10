@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SmsDecoratorTest {
-    private static SmsNotifier nonConfiguredSmsNotifier;
-    private static SmsNotifier fullyConfiguredSmsNotifier;
+    private static SmsDecorator nonConfiguredSmsNotifier;
+    private static SmsDecorator fullyConfiguredSmsNotifier;
 
     @BeforeAll
     static void createAndConfigureSmsNotifier() {
@@ -22,7 +22,7 @@ public class SmsDecoratorTest {
     }
 
     private static void configureNotifier() {
-        fullyConfiguredSmsNotifier.setTelephoneNumber("123456789");
+        fullyConfiguredSmsNotifier.setTelephoneNumber(123456789);
     }
 
     @Test
