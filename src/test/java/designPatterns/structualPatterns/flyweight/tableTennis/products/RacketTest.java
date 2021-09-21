@@ -3,36 +3,41 @@ package designPatterns.structualPatterns.flyweight.tableTennis.products;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RacketTest {
     private static Racket firstRacket;
     private static Racket secondRacket;
+    private static Racket thirdRacket;
+
 
     @BeforeAll
     public static void createBalls() {
         createFirstRacket();
-        createSecondRacket();
+        createSecondAndThirdRacketWithTheSameType();
     }
 
     private static void createFirstRacket() {
-        RacketType firstRacketType = createRacketType(1, 2, 3);
-        firstRacket = createRacketWithIDAndType(58000001, firstRacketType);
+        RacketType firstRacketType = new RacketType(1, 2, 3);
+        firstRacket = new Racket(58000001, firstRacketType);
     }
 
-    private static void createSecondRacket() {
-        RacketType secondRacketType = createRacketType(5, 9, 10);
-        secondRacket = createRacketWithIDAndType(22500005, secondRacketType);
-    }
-
-    private static void createRacketWithIDAndType(int ID, RacketType type) {
-        return new Racket(ID, racketType);
+    private static void createSecondAndThirdRacketWithTheSameType() {
+        RacketType commonRacketType = new RacketType(5, 9, 10);
+        secondRacket = new Racket(22500005, commonRacketType);
+        thirdRacket = new Racket(22500005, commonRacketType);
     }
 
     @Test
     public void testBallID() {
-        assertEquals(58000001, firstBall.ID);
-        assertEquals(22500005, secondBall.ID);
+        assertEquals(58000001, firstRacket.getID());
+        assertEquals(22500005, secondRacket.getID());
+    }
+
+    @Test
+    public void testIsSameType() {
+        assertTrue(secondRacket.isSameType(thirdRacket));
+        assertFalse(firstRacket.isSameType(secondRacket));
     }
 
 }

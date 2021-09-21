@@ -1,5 +1,6 @@
 package designPatterns.structualPatterns.flyweight.tableTennis.factory;
 
+import designPatterns.structualPatterns.flyweight.tableTennis.products.RacketType;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -7,8 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RacketTypeFactoryTest {
     private static RacketTypeFactory factory;
@@ -21,18 +21,15 @@ public class RacketTypeFactoryTest {
     @ParameterizedTest
     @MethodSource("speedSpinAndControl")
     public void testCreateRacketWithParameters(int speed, int spin, int control) {
-        RacketType racketType = factory.createRacketType(speed, spin, control);
-
-        assertEquals(speed, racketType.speed);
-        assertEquals(spin, racketType.spin);
-        assertEquals(control, racketType.control);
+        RacketType racketType = factory.createRacketTypeWithSpeedSpinAndControl(speed, spin, control);
+        assertTrue(racketType.hasSpeedSpinAndControl(speed, spin, control));
     }
 
     @ParameterizedTest
     @MethodSource("speedSpinAndControl")
     public void testCreateTheSameRacketWithParameters(int speed, int spin, int control) {
-        RacketType firstRacketType = factory.createRacketType(speed, spin, control);
-        RacketType secondRacketType = factory.createRacketType(speed, spin, control);
+        RacketType firstRacketType = factory.createRacketTypeWithSpeedSpinAndControl(speed, spin, control);
+        RacketType secondRacketType = factory.createRacketTypeWithSpeedSpinAndControl(speed, spin, control);
 
         assertSame(firstRacketType, secondRacketType);
     }

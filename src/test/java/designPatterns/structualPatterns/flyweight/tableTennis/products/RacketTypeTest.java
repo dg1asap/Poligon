@@ -4,10 +4,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RacketTypeTest {
     private static RacketType firstRacketType;
-    private static BallType secondRacketType;
+    private static RacketType secondRacketType;
 
     @BeforeAll
     public static void createRacketTypes() {
@@ -33,6 +34,12 @@ public class RacketTypeTest {
         assertEquals(5, firstRacketType.control);
         assertEquals(5, secondRacketType.control);
 
+    }
+
+    @Test
+    public void testHasSpeedSpinAndControl() {
+        assertTrue(firstRacketType.hasSpeedSpinAndControl(10, 1 ,5));
+        assertTrue(secondRacketType.hasSpeedSpinAndControl(9, 4 ,5));
     }
 
 }
