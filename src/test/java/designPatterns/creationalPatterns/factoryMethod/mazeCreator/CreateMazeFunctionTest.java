@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MazeCreatorTest {
+public class CreateMazeFunctionTest {
     @Test
     void testCreateSimpleStandardMaze() {
         StandardSimpleMazeCreator creator = new StandardSimpleMazeCreator();
